@@ -52,12 +52,12 @@ resource aws_route53_record txt {
 resource aws_route53_record domainkey {
   count   = 3
   zone_id = data.aws_route53_zone.zone.zone_id
-  name    = "fm${count.index}._domainkey.${data.aws_route53_zone.zone.name}"
+  name    = "fm${count.index + 1}._domainkey.${data.aws_route53_zone.zone.name}"
   type    = "CNAME"
   ttl     = local.ttl
 
   records = [
-    "fm${count.index}.${data.aws_route53_zone.zone.name}.dkim.fmhosted.com."
+    "fm${count.index + 1}.${data.aws_route53_zone.zone.name}.dkim.fmhosted.com."
   ]
 }
 
